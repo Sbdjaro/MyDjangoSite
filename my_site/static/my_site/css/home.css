@@ -1,0 +1,53 @@
+.top_image_container {
+    padding-top: 10px;
+    position: relative;
+    max-height: 60vh; /* Максимальная высота картинки - 40% высоты окна браузера */
+    width: 100vw; /* Ширина контейнера равна ширине окна браузера */
+    overflow: hidden; /* Обрезаем изображение, выходящее за пределы контейнера */
+}
+
+.top_image_container img {
+    width: 100%; /* Чтобы изображение занимало всю ширину контейнера */
+    height: auto; /* Автоматическое определение высоты для сохранения пропорций */
+    object-fit: cover; /* Изображение заполняет контейнер, сохраняя пропорции и обрезая лишнее */
+}
+
+.top_image_container::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0; /* Размещаем псевдоэлемент внизу изображения */
+    height: 20%; /* Высота затемненной области */
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); /* Градиент для затемнения снизу вверх */
+}
+
+.top_image_container::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0; /* Размещаем псевдоэлемент сверху изображения */
+    height: 20%; /* Высота затемненной области */
+    background: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent); /* Градиент для затемнения сверху вниз */
+}
+
+.top_image_container .text-overlay .top {
+    position: absolute;
+    top: 10%; /* Положение текста относительно верхней границы изображения */
+    left: 15%; /* Положение текста относительно левой границы изображения */
+    transform: translate(-50%, -50%); /* Центрирование текста по центру изображения */
+    color: white; /* Цвет текста */
+    font-size: 32px; /* Размер текста */
+    font-weight: bold; /* Жирный шрифт */
+}
+
+.top_image_container .text-overlay .bottom {
+    position: absolute;
+    top: 95%; /* Положение текста относительно верхней границы изображения */
+    left: 50%; /* Положение текста относительно левой границы изображения */
+    transform: translate(-50%, -50%); /* Центрирование текста по центру изображения */
+    color: white; /* Цвет текста */
+    font-size: 24px; /* Размер текста */
+    font-weight: bold; /* Жирный шрифт */
+}

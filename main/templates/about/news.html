@@ -1,0 +1,155 @@
+
+{% load static %}
+<div class="news-container">
+  <div class="news-slider">
+    <div class="nav-arrow prev-news disabled">
+      Previous
+    </div>
+    <div class="nav-arrow next-news">
+      Next
+    </div>
+    <div class="news-box active">
+      <h2 class="news-heading">Заголовок новости 1</h2>
+      <p class="news-content">Содержание новости 1</p>
+    </div>
+    <div class="news-box">
+      <h2 class="news-heading">Заголовок новости 2</h2>
+      <p class="news-content">Содержание новости 2</p>
+    </div>
+    <div class="news-box">
+      <h2 class="news-heading">Заголовок новости 3</h2>
+      <p class="news-content">Содержание новости 3</p>
+    </div>
+  </div>
+</div>
+
+<style>
+.news-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.news-slider {
+  position: relative;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #f1f1f1;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  width: 80%;
+  position: relative; /* Добавляем относительное позиционирование */
+}
+
+.news-box {
+  display: none;
+}
+
+.news-box.active {
+  display: block;
+}
+
+.news-heading {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.news-content {
+  font-size: 18px;
+}
+
+.nav-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 70px;
+  height: 70px;
+  position: absolute; /* Добавляем абсолютное позиционирование */
+  top: 50%; /* Перемещаем блок стрелки на середину родительского контейнера по вертикали */
+  transform: translateY(-50%); /* Смещаем блок стрелки на -50% от его высоты чтобы выровнять его вертикально */
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.nav-arrow{
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.prev-news {
+  left: -90px;
+}
+
+.next-news {
+  right: -90px;
+}
+
+.disabled {
+  display: none;
+}
+</style>
+
+<script>
+var news = [
+  {
+    heading: "Заголовок новости 1",
+    content: "Содержание новости 1"
+  },
+  {
+    heading: "Заголовок новости 2",
+    content: "Содержание новости 2"
+  },
+  {
+    heading: "Заголовок новости 3",
+    content: "Содержание новости 3"
+  }
+];
+
+var currentNewsIndex = 0;
+
+var newsBoxes = document.querySelectorAll('.news-box');
+
+function showCurrentNews() {
+  for (var i = 0; i < newsBoxes.length; i++) {
+    newsBoxes[i].classList.remove('active');
+  }
+  newsBoxes[currentNewsIndex].classList.add('active');
+}
+
+showCurrentNews();
+
+document.querySelector('.prev-news').addEventListener('click', function() {
+  if (currentNewsIndex > 0) {
+    currentNewsIndex--;
+    showCurrentNews();
+    enableDisableNavArrows();
+  }
+});
+
+document.querySelector('.next-news').addEventListener('click', function() {
+  if (currentNewsIndex < news.length - 1) {
+    currentNewsIndex++;
+    showCurrentNews();
+    enableDisableNavArrows();
+  }
+});
+
+function enableDisableNavArrows() {
+  var prevArrow = document.querySelector('.prev-news');
+  var nextArrow = document.querySelector('.next-news');
+
+  if (currentNewsIndex === 0) {
+    prevArrow.classList.add('disabled');
+  } else {
+    prevArrow.classList.remove('disabled');
+  }
+
+  if (currentNewsIndex === news.length - 1) {
+    nextArrow.classList.add('disabled');
+  } else {
+    nextArrow.classList.remove('disabled');
+  }
+}
+</script>

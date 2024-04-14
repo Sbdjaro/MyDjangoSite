@@ -1,0 +1,16 @@
+
+<h2> Наши кейсы </h2>
+
+{% load static %}
+
+<div class="cases">
+  {% for case in cases %}
+  <div class="case">
+    <h2>{{ case.title }}</h2>
+    <p>{{ case.company }}</p>
+    <p>{{ case.short }}</p>
+  </div>
+  {% endfor %}
+</div>
+
+

@@ -1,0 +1,48 @@
+
+<h2>Наша команда</h2>
+{% load static %}
+<div class="employee-slider">
+    <div class="slick-prev">&larr;</div>
+    <div class="slick-next">&rarr;</div>
+    <div class="employee-grid">
+        {% for employee in employees %}
+        <div class="employee">
+            <a href="{% url 'about_workers_id' employee.user_id %}">
+                <div class="employee-photo"><img src="{% static employee.photo %}"></div>
+                <div class="employee-info">
+                    <h3>{{ employee.first_name }} {{ employee.second_name }}</h3>
+                    <p>{{ employee.position }}</p>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        var slickOptions = {
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            arrows: true,
+            prevArrow: $('.employee-slider .slick-prev'),
+            nextArrow: $('.employee-slider .slick-next'),
+            autoplay: true,
+            autoplaySpeed: 3000
+        };
+
+        $('.employee-slider .employee-grid').slick(slickOptions);
+
+        $('.employee-slider .employee-grid').on('mouseenter', function () {
+            $(this).slick('pause');
+        });
+
+        $('.employee-slider .employee-grid').on('mouseleave', function () {
+            $(this).slick('play');
+        });
+    });
+</script>

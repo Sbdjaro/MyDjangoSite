@@ -1,0 +1,20 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+    Страница про нас
+{% endblock %}
+
+{% block content %}
+
+{% load static %}
+<!-- Боковое меню -->
+{% include "about/about.html" %}
+
+{% include "about/workers.html" %}
+
+{% include "about/case.html" %}
+
+{% include "about/news.html" %}
+
+
+{% endblock %}

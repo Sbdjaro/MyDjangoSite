@@ -1,0 +1,39 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ employee.first_name }} {{ employee.second_name }}
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="left-col">
+
+   <h1>{{ employee.first_name }} {{ employee.second_name }}</h1>
+   <ul>
+    <li>{{ employee.position }}</li>
+    <li>Электронная почта</li>
+    <li>Телефон</li>
+   </ul>
+   <h2>О себе</h2>
+   <p>Текст о себе</p>
+   <div class="contact">
+    <h3>Контакты</h3>
+    <ul>
+     <li>Facebook</li>
+     <li>Twitter</li>
+     <li>Instagram</li>
+    </ul>
+   </div>
+  </div>
+  <div class="right-col">
+   <img src="{% static employee.photo %}">
+  </div>
+</div>
+
+
+
+
+
+{% endblock %}
